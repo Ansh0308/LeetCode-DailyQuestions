@@ -1,12 +1,12 @@
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
-        int GlobalMax=INT_MIN,currentSum=0;
+        int cSum=0,gSum=INT_MIN;
         for(int ele : nums){
-            currentSum=max(ele,currentSum+ele);
-            GlobalMax=max(GlobalMax,currentSum);
+            cSum=max(ele,cSum+ele);
+            gSum=max(gSum,cSum);
         }
-        return GlobalMax;
+        return gSum;
         
     }
 };
