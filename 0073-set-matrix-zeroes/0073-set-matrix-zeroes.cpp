@@ -12,16 +12,14 @@ public:
                 }
             }
         }
-        //making rows 0
-        for(int i : rows){
+        for(int row:rows){
             for(int j=0;j<c;j++){
-                arr[i][j]=0;
+                arr[row][j]=0;
             }
         }
-        //making cols 0
-        for(int j : cols){
+        for(int col:cols){
             for(int i=0;i<r;i++){
-                arr[i][j]=0;
+                arr[i][col]=0;
             }
         }
         
