@@ -1,16 +1,14 @@
 class Solution {
 public:
-    vector<vector<int>> merge(vector<vector<int>>& nums) {
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
         vector<vector<int>> ans;
-        sort(nums.begin(),nums.end());
-        for(vector<int> range:nums){
+        sort(intervals.begin(),intervals.end());
+        for(vector<int> range:intervals){
             if(ans.size()==0){
                 ans.push_back(range);
                 continue;
             }
-            else if(ans[ans.size()-1][1]>range[1]){
-                continue;
-            }
+            if(ans[ans.size()-1][1]>=range[0] && ans[ans.size()-1][1]>=range[1])continue;
             else if(ans[ans.size()-1][1]>=range[0]){
                 ans[ans.size()-1][1]=range[1];
             }
@@ -19,6 +17,5 @@ public:
             }
         }
         return ans;
-        
     }
 };
