@@ -3,11 +3,14 @@ public:
     int firstMissingPositive(vector<int>& nums) {
         sort(nums.begin(),nums.end());
         int start=1;
-        for(int ele:nums){
-            if(ele<=0)continue;
-            if(ele!=start)return start;
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]<=0)continue;
+            if(i>0 && nums[i]==nums[i-1])continue;
+            if(nums[i]!=start)return start;
             start++;
         }
-        return start;
+        if(nums[nums.size()-1]!=start)return start;
+        return -1;
+        
     }
 };
