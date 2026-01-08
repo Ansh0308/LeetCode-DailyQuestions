@@ -1,25 +1,22 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        if (s.empty()) return 0;
-        unordered_set<char> sub;
-        int g_max = 0;
-        int i = 0;                 // left pointer of the sliding window
-        int n = s.size();
-        for (int j = 0; j < n; ++j) {
-            char ele = s[j];
-            if (sub.find(ele) == sub.end()) {
-                sub.insert(ele);
-            } else {
-                // remove characters from the left until the duplicate is gone
-                while (sub.find(ele) != sub.end()) {
-                    sub.erase(s[i]);
-                    ++i;
-                }
-                sub.insert(ele);
+        int llen=INT_MAX,glen=0;
+        set<char> fre;
+        int j=0;
+        for(int i=0;i<s.size();i++){
+            if(fre.find(s[i])==fre.end()){
+                fre.insert(s[i]);
             }
-            g_max = max(g_max, (int)sub.size());
+            else{
+                while(j<s.size() && fre.find(s[i])!=fre.end()){
+                    fre.erase(s[j++]);
+                }
+                fre.insert(s[i]);
+            }
+            glen=max(glen,int(fre.size()));
+
         }
-        return g_max;
+        return glen;
     }
 };
