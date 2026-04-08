@@ -15,8 +15,8 @@ public:
                     ans.insert({nums[i],nums[j],nums[k]});
                     j++;
                 k--;
-                while(j<n-1 && nums[j]==nums[j-1])j++;
-                while(k>0 && k<n-1 && nums[k]==nums[k-1])k--;
+                while(j<n && nums[j]==nums[j-1])j++;
+                while(k>0 && k<n-1 && nums[k]==nums[k+1])k--;
                 }
                 
                 
