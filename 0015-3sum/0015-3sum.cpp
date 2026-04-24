@@ -3,28 +3,32 @@ public:
     vector<vector<int>> threeSum(vector<int>& nums) {
         int n=nums.size();
         sort(nums.begin(),nums.end());
-        set<vector<int>> ans;
+        set<vector<int>> st;
         for(int i=0;i<n;i++){
             if(i>0 && nums[i]==nums[i-1])continue;
             int j=i+1,k=n-1;
             while(j<k){
                 int sum=nums[i]+nums[j]+nums[k];
-                if(sum>0)k--;
-                else if(sum<0)j++;
-                else{
-                    ans.insert({nums[i],nums[j],nums[k]});
+                if(sum<0){
                     j++;
-                k--;
-                while(j<n && nums[j]==nums[j-1])j++;
-                while(k>0 && k<n-1 && nums[k]==nums[k+1])k--;
-                }
-                
-                
-            }
-        }
-        return {ans.begin(),ans.end()};
 
-        
+                }
+                else if(sum>0){
+                    k--;
+
+                }
+                else{
+                    st.insert({nums[i],nums[j],nums[k]});
+                    j++;
+                    k--;
+                    while(j<n && nums[j]==nums[j-1])j++;
+                    while(k>0 && nums[k]==nums[k+1])k--;
+
+                }
+            }
+
+        }
+        return {st.begin(),st.end()};
         
     }
 };
