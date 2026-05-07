@@ -1,8 +1,12 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        sort(nums.begin(),nums.end());
-        return nums[nums.size()/2];
+        int freq=0,maj=-1;
+        for(int ele:nums){
+            if(freq==0)maj=ele;
+            (ele==maj)?freq++:freq--;
+        }
+        return maj;
         
     }
 };
