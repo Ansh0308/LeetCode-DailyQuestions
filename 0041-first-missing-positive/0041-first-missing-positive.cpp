@@ -9,8 +9,8 @@ public:
             if(nums[i]!=start)return start;
             start++;
         }
-        if(nums[nums.size()-1]!=start)return start;
-        return -1;
+        return start;
+
         
     }
 };
