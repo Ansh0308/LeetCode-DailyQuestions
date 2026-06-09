@@ -4,9 +4,10 @@ public:
         int n=prices.size();
         int maxProfit=0,minPrice=prices[0];
         for(int i=1;i<n;i++){
-            maxProfit=max(maxProfit,prices[i]-minPrice);
             minPrice=min(minPrice,prices[i]);
+            maxProfit=max(maxProfit,prices[i]-minPrice);
         }
         return maxProfit;
+        
     }
 };
