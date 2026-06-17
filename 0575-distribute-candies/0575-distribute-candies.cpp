@@ -6,8 +6,8 @@ public:
         for(int ele:nums){
             st.insert(ele);
         }
-       int ans=min(n/2,(int)st.size());
-        return ans;
+      
+        return min(n/2,(int)st.size());
         
     }
 };
