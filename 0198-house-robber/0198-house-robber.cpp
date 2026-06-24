@@ -6,6 +6,7 @@ public:
 
     }
     int memo_help(vector<int>& nums,vector<int>& memo,int i){
+        if(i<0)return 0;
         if(memo[i]!=-1)return memo[i];
         return memo[i]=max(memo_help(nums,memo,i-1),nums[i]+memo_help(nums,memo,i-2));
     }
@@ -14,7 +15,7 @@ public:
         if(n==1)return nums[0];
         vector<int> memo(n,-1);
         memo[0]=nums[0];
-        memo[1]=max(nums[0],nums[1]);
+        
         return memo_help(nums,memo,n-1);
 
     }
