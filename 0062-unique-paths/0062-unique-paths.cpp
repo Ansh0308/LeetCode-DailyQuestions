@@ -1,15 +1,21 @@
 class Solution {
 public:
-    int helper(int m,int n,int currm,int currn,vector<vector<int>>& dp ){
-        if(currn>=n || currn<0 || currm>=m || currm<0)return 0;
-        if(currm==m-1 && currn==n-1)return 1;
-        return (dp[currm][currn]!=-1)?dp[currm][currn]:dp[currm][currn]=helper(m,n,currm+1,currn,dp)+helper(m,n,currm,currn+1,dp);
+    int memo_help(vector<vector<int>> &memo,int i,int j){
+        if(i<0 || j<0)return 0;
+        if(memo[i][j]!=0)return memo[i][j];
+    
+        
 
+        return memo[i][j]= memo_help(memo,i-1,j)+memo_help(memo,i,j-1);
+    }
+    int memo_f(int m, int n){
+        vector<vector<int>> memo(m,vector<int> (n,0));
+        memo[0][0]=1;
+        return memo_help(memo,m-1,n-1);
 
     }
     int uniquePaths(int m, int n) {
-        vector<vector<int>> dp(m,vector<int>(n,-1));
-        return helper(m,n,0,0,dp);
+        return memo_f(m,n);
         
     }
 };
