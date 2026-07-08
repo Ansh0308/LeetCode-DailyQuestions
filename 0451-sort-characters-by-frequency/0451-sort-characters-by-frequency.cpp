@@ -1,27 +1,27 @@
 class Solution {
 public:
     string frequencySort(string s) {
-        // Count frequency
-        unordered_map<char, int> freq;
-        for (char c : s) {
-            freq[c]++;
+        unordered_map<char, int> mp;
+        for (char ele : s) {
+            mp[ele]++;
         }
-
-        // Move map data into a vector so we can sort by value
-        vector<pair<char, int>> sor(freq.begin(), freq.end());
-
-        // Sort by frequency in decreasing order
-        sort(sor.begin(), sor.end(),
-             [](auto &a, auto &b) {
-                 return a.second > b.second;   // sort by value DESC
-             });
-
-        // Build result string
-        string result;
-        for (auto &p : sor) {
-            result.append(p.second, p.first);   // repeat char p.first, p.second times
+        
+        vector<pair<int, char>> vc;
+        for (auto it : mp) {
+            vc.push_back({it.second, it.first});
         }
-
-        return result;
+        
+        // Corrected line: Uses a lambda to compare the pairs in descending order
+        sort(vc.begin(), vc.end(), [](const pair<int, char>& a, const pair<int, char>& b) {
+            return a.first > b.first; // Sorts by frequency descending
+        });
+        
+        string ans = "";
+        for (auto it : vc) {
+            for (int i = 0; i < it.first; i++) {
+                ans += it.second;
+            }
+        }
+        return ans;
     }
 };
