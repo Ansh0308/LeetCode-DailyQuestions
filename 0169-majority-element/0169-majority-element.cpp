@@ -1,10 +1,15 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        int freq=0,maj=-1;
+        int maj=0,freq=0;
         for(int ele:nums){
-            if(freq==0)maj=ele;
-            (ele==maj)?freq++:freq--;
+            if(freq==0){
+                maj=ele;
+            }
+            if(ele==maj)freq++;
+            else{
+                freq--;
+            }
         }
         return maj;
         
