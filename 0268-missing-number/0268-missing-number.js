@@ -4,12 +4,21 @@
  */
 var missingNumber = function(nums) {
     const n=nums.length;
-    let frq=new Set();
+    // let frq=new Set();
+    // for(let ele of nums){
+    //     frq.add(ele);
+    // }
+    // for(let i=0;i<=n;i++){
+    //     if(!frq.has(i))return i;
+    //}
+    
+    let ans=0;
     for(let ele of nums){
-        frq.add(ele);
+        ans^=ele;
     }
     for(let i=0;i<=n;i++){
-        if(!frq.has(i))return i;
+        ans^=i;
     }
-    return -1;
+    
+    return ans;
 };
