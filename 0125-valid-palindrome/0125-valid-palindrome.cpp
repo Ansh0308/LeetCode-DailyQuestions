@@ -1,15 +1,19 @@
 class Solution {
 public:
     bool isPalindrome(string s) {
-        string cleaned="";
+        string cleaner="";
         for(char ele:s){
             if(isalnum(ele)){
-                cleaned+=tolower(ele);
+                cleaner+=tolower(ele);
             }
         }
-        string rev=cleaned;
-        reverse(rev.begin(),rev.end());
-        return rev==cleaned;
+        int i=0,j=cleaner.size()-1;
+        while(i<j){
+            if(cleaner[i]!=cleaner[j])return false;
+            i++;
+            j--;
+        }
+        return true;
 
         
     }
