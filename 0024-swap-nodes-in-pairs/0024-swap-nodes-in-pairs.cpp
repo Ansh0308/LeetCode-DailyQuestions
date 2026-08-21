@@ -13,7 +13,7 @@ public:
     ListNode* swapPairs(ListNode* head) {
         if(head==nullptr || head->next==nullptr)return head;
         
-        int count=0;
+        
         ListNode* temp=head;
         ListNode* Next=temp->next;
         ListNode* after=swapPairs(temp->next->next);
