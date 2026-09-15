@@ -1,42 +1,32 @@
 class Solution {
 public:
-    int largestRectangleArea(vector<int>& arr) {
-        if(arr.size()==1)return arr[0];
-        int ans=0;
-        vector<int> rightSmaller(arr.size(),-1);
-        vector<int> leftSmaller(arr.size(),-1);
+    int largestRectangleArea(vector<int>& nums) {
+        int n=nums.size();
+        vector<int> left(n,-1),right(n,n);
         stack<int> st;
-       
-        for(int i=arr.size()-1;i>=0;i--){
-            while(!st.empty()){
-                if(arr[st.top()]<arr[i]){
-                    rightSmaller[i]=st.top();
-                    break;
-                }
+        for(int i=0;i<n;i++){
+            while(!st.empty() && nums[st.top()]>nums[i]){
+                int idx=st.top();
                 st.pop();
+                right[idx]=i;
             }
-            if(st.empty())rightSmaller[i]=arr.size();
-            st.push(i);
-
+        st.push(i);
         }
         while(!st.empty()){
             st.pop();
         }
-        for(int i=0;i<arr.size();i++){
-            while(!st.empty()){
-                if(arr[st.top()]<arr[i]){
-                    leftSmaller[i]=st.top();
-                    break;
-                }
+        for(int i=n-1;i>=0;i--){
+             while(!st.empty() && nums[st.top()]>nums[i]){
+                int idx=st.top();
                 st.pop();
+                left[idx]=i;
             }
-            if(st.empty())leftSmaller[i]=-1;
-            st.push(i);
 
+            st.push(i);
         }
-        for(int i=0;i<arr.size();i++){
-            int width=rightSmaller[i]-leftSmaller[i]-1;
-            ans=max(ans,arr[i]*width);
+        int ans=INT_MIN;
+        for(int i=0;i<n;i++){
+            ans=max(ans,nums[i]*(right[i]-left[i]-1));
         }
         return ans;
     }
