@@ -11,21 +11,29 @@
  */
 class Solution {
 public:
-    int ans=-1;
-    int maxDep=-1;
-    void helper(TreeNode* root,int curr){
-        if(root==nullptr){
-            return;
-        }
-        if(curr>maxDep){
-            ans=root->val;
-            maxDep=curr;
-        }
-        helper(root->left,curr+1);
-        helper(root->right,curr+1);
-    }
+    
     int findBottomLeftValue(TreeNode* root) {
-        helper(root,0);
+        queue<TreeNode*> qu;
+        qu.push(root);
+        int ans=root->val;
+        while(!qu.empty()){
+            vector<int> vec;
+            int end=qu.size();
+            for(int i=0;i<end;i++){
+                TreeNode* temp=qu.front();
+                qu.pop();
+               vec.push_back(temp->val);
+                if(temp->left!=nullptr){
+                    qu.push(temp->left);
+                    // ans=temp->left->val;
+                }
+                if(temp->right!=nullptr){
+                    qu.push(temp->right);
+                }
+
+            }
+            ans=vec[0];
+        }
         return ans;
     }
 };
